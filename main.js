@@ -27,7 +27,9 @@ function render() {
                 <div>
                     <button>Check</button>
                     <button>Delete</button>
-            </div>`;
+                </div>
+            </div>`
+
     }
 
 
