@@ -5,38 +5,102 @@ body {
     background-size: cover;
 }
 
-.container{
+.container {
     background-color: white;
     min-height: 100vh;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
-.task-area{
+
+.task-area {
     border: 1px solid black;
+    margin-top: 1em;
+    position: relative;
 }
-.task-tabs{
+
+.task-tabs {
     display: flex;
     border-bottom: 1px solid black;
     position: relative;
 }
-.task-tabs div{
+
+.task-tabs div {
     padding: 1em;
 }
 
-#under-line{
+#under-line {
     height: 4px;
     background-color: blue;
     position: absolute;
     width: 80px;
     left: 0px;
     top: 52px;
-    padding:0px;
+    padding: 0px;
+}
+
+.button-box {
+    display: flex;
+}
+
+.button-box button {
+    height: 100%;
+    border: 1px solid black;
+    width: 5em;
+    margin: 0;
+    background-color: white;
+    transition: 0.5s;
+}
+
+.button-box button :active {
+    position: relative;
+    top: 2px;
+}
+
+.button-box button:first-child:hover {
+    background-color: greenyellow;
+}
+
+.button-box button:nth-child(2):hover {
+    background-color: rgb(255, 0, 0, 0.3);
+}
+
+#task-input {
+    transition: padding-top 0.2s ease, margin-top 0.2s ease;
+    width: 80%;
+    border: none;
+    border: 1px solid black;
+}
+
+#task-input:focus {
+    outline: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    transition: 0.5s;
+    padding: 10px;
+}
+
+.task-complete {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: line-through;
+    background-color: lightgray;
+    transition: 0.5s;
+    width: 100%;
+    position: relative;
 }
 
 .task {
     display: flex;
     justify-content: space-between;
-    width:100%;
-    border-bottom: 1px solid lightgray;
-    padding: 1em;
+    width: 100%;
     position: relative;
+}
+
+.task span {
+    padding: 1em;
+}
+
+.task-complete span {
+    padding: 1em;
 }
