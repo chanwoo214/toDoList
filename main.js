@@ -70,7 +70,7 @@ function render() {
     // Show according to the chosen tab
     if (mode === "all-tasks") {
         list = taskList;
-    } else{ //(mode === "processing-tasks" || mode === "completed-tasks") {
+    } else if (mode === "processing-tasks" || mode === "completed-tasks") {
         // processing and completed tasks filteredList
         list = filteredList;
     }
@@ -78,7 +78,7 @@ function render() {
 
 
     for (let i = 0; i < list.length; i++) {
-        if (list[i].isComplete == true) {
+        if (list[i].isComplete) {
             resultHTML += `<div class="task-complete" id = "${list[i].id}">
               <span>${taskList[i].taskContent}</span>
             <div class="button-box">
@@ -102,9 +102,8 @@ function render() {
 }
 
 function toggleComplete(id) {
-    console.log("id:", id);
     for (let i = 0; i < taskList.length; i++) {
-        if (taskList[i].id == id) {
+        if (taskList[i].id === id) {
             taskList[i].isComplete = !taskList[i].isComplete;
             break;
         }
@@ -121,16 +120,14 @@ function deleteTask(id) {
     filter();
 }
 
-function filter(event) {
-    if (event) {
-        mode = event.target.id;
-        underLine.style.width = event.target.offsetWidth + "px";
-        underLine.style.left = event.target.offsetLeft + "px";
-        underLine.style.top = event.target.offsetTop + (event.target.offsetHeight) - 3 + "px";
+function filter(e) {
+    if (e) {
+        mode = e.target.id;
+        horizontalIndicator(e);
     }
 
     filteredList = [];
-  if (mode === "processing-tasks") {
+    if (mode === "processing-tasks") {
         //Shows only the processing tasks
         //task.isComplete = false;
         for (let i = 0; i < taskList.length; i++) {
@@ -142,7 +139,7 @@ function filter(event) {
         //Shows completed tasks
         //task.isComplete = true;
         for (let i = 0; i < taskList.length; i++) {
-            if (taskList[i].isComplete === true) {
+            if (taskList[i].isComplete) {
                 filteredList.push(taskList[i]);
             }
         }
