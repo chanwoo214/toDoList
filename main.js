@@ -15,6 +15,7 @@ let tabs = document.querySelectorAll(".task-tabs div")
 let taskList = [];
 let mode = "all-tasks";
 let filteredList = [];
+
 let horizontalUnderline = document.getElementById("under-line");
 let horizontalTabs = document.querySelectorAll("task-tabs");
 
@@ -41,7 +42,7 @@ taskInput.addEventListener("keypress", function (event) {
 // Select the tabs
 for (let i = 1; tabs.length; i++) {
     tabs[i].addEventListener("click", function (event) {
-        filter(event)
+        filter(event);
     });
 };
 
@@ -57,6 +58,7 @@ function addTask() {
         taskContent: taskInput.value,
         isComplete: false,
     };
+
     taskList.push(task);
     taskInput.value = "";
     render();
@@ -64,15 +66,17 @@ function addTask() {
 
 function render() {
     let list = [];
+    let resultHTML = "";
     // Show according to the chosen tab
     if (mode === "all-tasks") {
         list = taskList;
-    } else if (mode === "processing-tasks" || mode === "completed-tasks") {
+    } else{ //(mode === "processing-tasks" || mode === "completed-tasks") {
         // processing and completed tasks filteredList
         list = filteredList;
     }
     // show different lists
-    let resultHTML = "";
+
+
     for (let i = 0; i < list.length; i++) {
         if (list[i].isComplete == true) {
             resultHTML += `<div class="task-complete" id = "${list[i].id}">
@@ -112,7 +116,6 @@ function deleteTask(id) {
     for (let i = 0; i < taskList.length; i++) {
         if (taskList[i].id == id) {
             taskList.splice(i, 1);
-            break;
         }
     }
     filter();
@@ -127,10 +130,7 @@ function filter(event) {
     }
 
     filteredList = [];
-    if (mode === "all-tasks") {
-        //Shows all the tasks
-        render();
-    } else if (mode === "processing-tasks") {
+  if (mode === "processing-tasks") {
         //Shows only the processing tasks
         //task.isComplete = false;
         for (let i = 0; i < taskList.length; i++) {
@@ -138,7 +138,6 @@ function filter(event) {
                 filteredList.push(taskList[i]);
             }
         }
-        render();
     } else if (mode === "completed-tasks") {
         //Shows completed tasks
         //task.isComplete = true;
@@ -147,8 +146,8 @@ function filter(event) {
                 filteredList.push(taskList[i]);
             }
         }
-        render();
     }
+    render();
 }
 
 function randomIDGenerate() {
